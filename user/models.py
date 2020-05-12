@@ -8,4 +8,4 @@ class Usuario(models.Model):
     estado = models.CharField(max_length=30)
     cidade = models.CharField(max_length=100)
     email = models.CharField(max_length=100)
-    telefone= models.CharField(max_length=20, blank=true)
+    telefone= models.CharField(max_length=20, blank=True)
