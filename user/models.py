@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 class Usuario(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     nome = models.CharField(max_length=200)
-    data_nascimento = models.DateField(blank=true)
+    data_nascimento = models.DateField(blank=True)
     estado = models.CharField(max_length=30)
     cidade = models.CharField(max_length=100)
     email = models.CharField(max_length=100)
