@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <!-- Preloader -->
+    <div id="preloader">
+        <i class="circle-preloader"></i>
+        <img src="{% static 'img/core-img/hamburger.png' %}" alt="">
+    </div>
+
+    {% include 'partials/_busca.html' %}
+
+   {% include 'partials/_menu.html' %}
+
+        <!-- Receipe Post Search 
+        <div class="receipe-post-search mb-80">
+            <div class="container">
+                <form action="#" method="post">
+                    <div class="row">
+                        <div class="col-12 col-lg-5">
+                            <select name="select1" id="select1">
+                                <option value="1">Comida típica brasileira</option>
+                                <option value="1">Massas</option>
+                                <option value="1">Veganas</option>
+                            </select>
+                        </div>
+                        <div class="col-12 col-lg-2 text-right">
+                            <button type="submit" class="btn delicious-btn">Buscar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        -->
+        <!-- Receipe Slider -->
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="receipe-slider owl-carousel">
+                        {% if publicacoes.foto_publicacao == '' %}
+                        <img src="{% static 'img/bg-img/foto_publicacao.png' %}" alt="">
+                        {% else %}
+                            <img src="{{ publicacoes.foto_publicacao.url }}" alt="">
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Receipe Content Area -->
+        <div class="receipe-content-area">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-12 col-md-8">
+                        <div class="receipe-headline my-5">
+                            <span>{{ publicacoes.data_publicacao }}</span>
+                            <h2>{{ publicacoes.nome_publicacao }}</h2>
+                            <div class="receipe-duration">
+                                <h6>Preço: {{ publicacoes.preco }}</h6>
+                                <h6>Categoria: {{ publicacao.categoria }}</h6>
+                                <h6>Por: {{ publicacoes.pessoa }}</h6>
+                            </div>
+                        </div>
+                    </div>
+
+                <div class="row">
+                    <div class="col-12 col-lg-8">
+                    </div>
+
+                    <!-- descricao -->
+                    <div class="col-12 col-lg-4">
+                        <div class="ingredients">
+                            <h4>Descrição</h4>
+                            <div class="ingredients">
+                                <p>{{ publicacoes.descricao }}</p>
+                            </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- descricao -->
+
+   {% include 'partials/_footer.html' %}
+
+ {% endblock %}

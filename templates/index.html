@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <!-- Preloader -->
+    <div id="preloader">
+        <i class="circle-preloader"></i>
+        <img src="{% static 'img/core-img/pizza.png' %}" alt="">
+    </div>
+
+    {% include 'partials/_busca.html' %}
+
+    {% include 'partials/_menu.html' %}
+
+    <!-- ##### Best Receipe Area Start ##### -->
+    <section class="best-receipe-area">
+        <div class="container">
+            <div class="row">
+                {% if publicacoes %}
+                {% for publicacao in publicacoes %}
+                <!-- Single Best Receipe Area -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="single-best-receipe-area mb-30">
+                        {% if publicacao.foto_publicacao == '' %}
+                        <img src="{% static 'img/bg-img/foto_publicacao.png' %}" alt="">
+                        {% else %}
+                            <img src="{{ publicacao.foto_publicacao.url }}" alt="">
+                        {% endif %}
+                        <div class="receipe-content">
+                            <!-- url 'publicacao' publicacao.id -->
+                            <a href="{% url 'publicacao' publicacao.id %}">
+                                <h5>{{ publicacao.nome_publicacao }}</h5>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% else %}
+                {% endif %}
+            </div>
+        </div>
+    </section>
+    <!-- ##### Best Receipe Area End ##### -->
+
+    {% include 'partials/_footer.html' %}
+
+{% endblock %}
