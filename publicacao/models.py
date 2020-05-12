@@ -14,7 +14,7 @@ class Publicacao(models.Model):
 
     def __str__(self):
         return "Nome do objeto é = %s" % self.foto_publicacao
- 
+
 '''
  class Comentario(models.Model):
      titulo
