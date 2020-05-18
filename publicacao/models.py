@@ -17,9 +17,12 @@ class Publicacao(models.Model):
         return "Nome do objeto é = %s" % self.foto_publicacao
 
 
- class Comentario(models.Model):
-     #relacionamento 1:n
-     publicacao = models.ForeingKey(Publicacao, on_delete.CASCADE)
-     usuario = models.ForeingKey(Usuario, on_delete.CASCADE)
-     titulo = models.CharField(max_length=100)
-     descricao = models.TextField()
+class Comentario(models.Model):
+    #relacionamento 1:n
+    publicacao = models.ForeingKey(Publicacao, on_delete.CASCADE)
+    usuario = models.ForeingKey(Usuario, on_delete.CASCADE)
+    titulo = models.CharField(max_length=100)
+    descricao = models.TextField()
+
+    def __str__(self):
+        return "Nome do objeto é = %s" % self.titulo
