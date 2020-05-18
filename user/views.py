@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import auth, messages
 from publicacao.models import Publicacao
+from .models import Usuario
 
 # Create your views here.
 
@@ -12,6 +13,10 @@ def cadastro(request):
         senha = request.POST['password']
         senha2 = request.POST['password2']
         email = request.POST['email']
+        nascimento = request.POST['nascimento']
+        estado = request.POST['estado']
+        cidade = request.POST['cidade']
+        telefone = request.POST['telefone']
         if campo_vazio(nome):
             messages.error(request,'O Campo Nome Não Pode Ficar Vazio')
             return redirect('cadastro')
@@ -24,8 +29,13 @@ def cadastro(request):
         if User.objects.filter(email = email).exists():# Verificar se existe o email já cadastrado no banco de dados
             messages.error(request, 'Usuario já Cadastrado')
             return redirect('cadastro')
+        if campo_vazio(nascimento):
+            messages.error(request,'A data de nascimento não pode ')
         user = User.objects.create_user(username=nome, email = email, password=senha)#Cria um objeto Usuario
         user.save()
+        usuario = Usuario.objects.create(user= user, nome = nome, data_nascimento = nascimento,
+        estado = estado, cidade = cidade, email = email, telefone = telefone)
+        usuario.save()
         print("O Id do usuario é:" + str(user.id))
         messages.success(request, 'Cadastro realizado com Sucesso!')
         return redirect('login')
@@ -52,7 +62,7 @@ def login(request):
 def logout(request):
     auth.logout(request)
     return redirect('index')
-    
+
 
 
 def campo_vazio(campo):
