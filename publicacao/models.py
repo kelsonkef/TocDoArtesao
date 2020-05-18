@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from user.models import Usuario
 
 class Publicacao(models.Model):
-    usuario = models.ForeingKey(Usuario, on_delete.CASCADE)
+    usuario = models.ForeignKey(Usuario, on_delete.CASCADE)
     nome_publicacao = models.CharField(max_length=200)
     descricao = models.TextField()
     categoria = models.CharField(max_length=100)
@@ -19,8 +19,8 @@ class Publicacao(models.Model):
 
 class Comentario(models.Model):
     #relacionamento 1:n
-    publicacao = models.ForeingKey(Publicacao, on_delete.CASCADE)
-    usuario = models.ForeingKey(Usuario, on_delete.CASCADE)
+    publicacao = models.ForeignKey(Publicacao, on_delete.CASCADE)
+    usuario = models.ForeignKey(Usuario, on_delete.CASCADE)
     titulo = models.CharField(max_length=100)
     descricao = models.TextField()
 
