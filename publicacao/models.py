@@ -1,9 +1,10 @@
 from django.db import models
 from datetime import datetime #importa o modulo de tempo do Django
-#from pessoas.models import Pessoa
 from django.contrib.auth.models import User
+from user.models import Usuario
 
 class Publicacao(models.Model):
+    usuario = models.ForeingKey(Usuario, on_delete.CASCADE)
     nome_publicacao = models.CharField(max_length=200)
     descricao = models.TextField()
     categoria = models.CharField(max_length=100)
@@ -15,10 +16,10 @@ class Publicacao(models.Model):
     def __str__(self):
         return "Nome do objeto é = %s" % self.foto_publicacao
 
-'''
+
  class Comentario(models.Model):
-     titulo
-     descricao
-     usuario
-     publicacao
-'''
+     #relacionamento 1:n
+     publicacao = models.ForeingKey(Publicacao, on_delete.CASCADE)
+     usuario = models.ForeingKey(Usuario, on_delete.CASCADE)
+     titulo = models.CharField(max_length=100)
+     descricao = models.TextField()
