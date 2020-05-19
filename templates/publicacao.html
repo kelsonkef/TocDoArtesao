@@ -82,10 +82,18 @@
                 <div class="col-12 col-lg-4">
                     <div class="ingredients">
                         <h4>Comentarios</h4>
+                        {% if comentarios %}
+                        {% for comentario in comentarios %}
                         <div class="ingredients">
-                            <p>Ola asdasdasdkasldkaslçk</p>
+                            <h3>{{ comentario.titulo}}</h3>
                         </p>
                         </div>
+                        <div class="ingredients">
+                            <p>{{ comentario.descricao }}</p>
+                        </p>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
                         <form action="{% url 'cadastra_comentario' publicacoes.id %}" method="post" enctype="multipart/form-data">
                           {% csrf_token %}
                           <div class="col-12 col-lg-12">
