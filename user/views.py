@@ -79,6 +79,23 @@ def dashboard(request):
         return redirect('index')
 
 
+def criar_publicacao(request):
+    if request.method == 'POST':
+        nome_publicacao = request.POST['nome_publicacao']
+        descricao = request.POST['descricao']
+        categoria = request.POST['categoria']
+        preco = float(request.POST['preco'])
+        foto_publicacao = request.FILES['foto_publicacao']
+        usuario = get_object_or_404(Usuario,pk=request.user.id)
+        publicacao = Publicacao.objects.create(usuario = usuario, nome_publicacao = nome_publicacao , descricao = descricao,
+        categoria = categoria, foto_publicacao = foto_publicacao, preco =preco)
+        publicacao.save()
+        return redirect('dashboard')
+    else:
+        return render(request, 'usuarios/criar_publicacao.html')
+
+
+
 def campo_vazio(campo):
     return not campo.strip()
 

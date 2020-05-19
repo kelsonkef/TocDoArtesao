@@ -52,22 +52,22 @@
                         <div class="classycloseIcon">
                             <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
                         </div>
-                
+
 
 
                         <div class="classynav">
                             <ul>
                                 <li><a href="{% url 'index' %}">Home</a></li>
-                                
+
                                     <li><a href="#">Minhas Publicações</a></li>
-                                    <li><a href="#">Crie sua Publicação</a></li>
+                                    <li><a href="{% url 'criar_publicacao' %}">Crie sua Publicação</a></li>
                                     <li><a href="{% url 'logout' %}">Logout</a></li>
                                     <li><a href="{% url 'login' %}">Login</a></li>
                                     <li><a href="{% url 'cadastro' %}">Cadastro</a></li>
 
                             </ul>
 
-                            
+
                             <div class="search-btn">
                                 <i class="fa fa-search" aria-hidden="true"></i>
                             </div>
