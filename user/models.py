@@ -10,3 +10,6 @@ class Usuario(models.Model):
     cidade = models.CharField(max_length=100)
     email = models.CharField(max_length=100)
     telefone= models.CharField(max_length=20, blank=True)
+    
+    def __str__(self):
+        return "Nome do objeto é = %s" % self.nome

@@ -64,6 +64,20 @@ def logout(request):
     return redirect('index')
 
 
+def dashboard(request):
+    if request.user.is_authenticated: # verifico o usuario está autenticado
+        print('Usuario do Django' + str(request.user.id))
+        usuario = get_object_or_404(Usuario,pk=request.user.id)
+        print(usuario)
+        publicacoes = Publicacao.objects.order_by('-data_publicacao').filter(usuario = usuario.id)
+        dados = {
+            'publicacoes' : publicacoes
+        }
+        print(dados)
+        return render(request, 'usuarios/dashboard.html', dados)
+    else:
+        return redirect('index')
+
 
 def campo_vazio(campo):
     return not campo.strip()
