@@ -38,27 +38,27 @@ def buscar(request):
 
 
 def comentario_publicacao(request, publicacao_id):
-    print("entrou na funação do comentario")
     if request.method == 'POST':
         titulo_comentario = request.POST['titulo_comentario']
         comentario_texto = request.POST['comentario']
-        print("Entrou no primeiro if : "+titulo_comentario+" comen: "+comentario_texto)
         if campo_vazio(titulo_comentario):
             messages.error(request, 'O titulo do Comentario não pode ficar vazio')
             return  redirect('publicacao',publicacao_id)
         if campo_vazio(comentario_texto):
             messages.error(request, 'O campo comentario não pode ficar vazio')
             return  redirect('publicacao',publicacao_id)
-        print("Passou dos IFs")
         usuario = get_object_or_404(Usuario,pk=request.user.id)
-        print(usuario)
         publicacao = get_object_or_404(Publicacao, pk=publicacao_id)
-        print(publicacao)
         comentario = Comentario.objects.create(publicacao = publicacao, usuario = usuario, titulo = titulo_comentario, descricao= comentario_texto)
         comentario.save()
-        print(comentario)
         return  redirect('publicacao',publicacao_id)
-    return  render(request,"teste.html")
+    return  redirect('publicacao',publicacao_id)
+
+def deleta_comentario(request, comentario_id):
+    comentario =  get_object_or_404(Comentario, pk = comentario_id)
+    publicacao_id = comentario.publicacao.id
+    comentario.delete()
+    return redirect('publicacao', publicacao_id)
 
 def campo_vazio(campo):
     return not campo.strip()

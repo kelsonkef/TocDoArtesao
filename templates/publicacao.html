@@ -92,6 +92,7 @@
                             <p>{{ comentario.descricao }}</p>
                         </p>
                         </div>
+                        <a href="{% url 'deleta_comentario' comentario.id %}" type="button" class="btn btn-danger">Deletar</a>
                         {% endfor %}
                         {% endif %}
                         <form action="{% url 'cadastra_comentario' publicacoes.id %}" method="post" enctype="multipart/form-data">
