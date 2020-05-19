@@ -36,7 +36,6 @@ def buscar(request):
 
     return render(request, 'buscar.html', dados)
 
-
 def comentario_publicacao(request, publicacao_id):
     if request.method == 'POST':
         titulo_comentario = request.POST['titulo_comentario']

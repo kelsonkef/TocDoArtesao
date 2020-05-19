@@ -53,6 +53,7 @@ def login(request):
             user = auth.authenticate(request, username=nome, password=senha) # faço a autenticação com o retorno do nome do usurai do banco de dados.
             if user is not None: # verifco se o usuario não está nulo
                 auth.login(request, user) # realizo o login
+                print("Usuario consegui logar")
                 messages.success(request, 'Login realizado com sucesso')
                 return redirect('dashboard')
             messages.error(request, 'Email ou senha Incorreto')
@@ -67,8 +68,11 @@ def logout(request):
 def dashboard(request):
     if request.user.is_authenticated: # verifico o usuario está autenticado
         print('Usuario do Django' + str(request.user.id))
-        usuario = get_object_or_404(Usuario,pk=request.user.id)
+        id = request.user.id
+        usuario = get_object_or_404(Usuario, pk=id)
+        print("print do usuario")
         print(usuario)
+        print("de pois do print")
         publicacoes = Publicacao.objects.order_by('-data_publicacao').filter(usuario = usuario.id)
         dados = {
             'publicacoes' : publicacoes
@@ -77,6 +81,7 @@ def dashboard(request):
         return render(request, 'usuarios/dashboard.html', dados)
     else:
         return redirect('index')
+
 
 def criar_publicacao(request):
     if request.method == 'POST':

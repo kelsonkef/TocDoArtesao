@@ -92,21 +92,28 @@
                             <p>{{ comentario.descricao }}</p>
                         </p>
                         </div>
+                        {% if user.is_authenticated and user.id == comentario.usuario.id %}
                         <a href="{% url 'deleta_comentario' comentario.id %}" type="button" class="btn btn-danger">Deletar</a>
+                        {% endif %}
                         {% endfor %}
                         {% endif %}
+                        {% if user.is_authenticated %}
                         <form action="{% url 'cadastra_comentario' publicacoes.id %}" method="post" enctype="multipart/form-data">
                           {% csrf_token %}
                           <div class="col-12 col-lg-12">
                               <label for="nome_publicacao"><b>Título do comentario</b></label>
                               <input type="text" id="titulo_comentario" class="form-control" name="titulo_comentario">
                           </div>
-                            <div class="col-12">
+
+                          <div class="col-12">
                                 <label for="file"><b>Seu comentario</b></label>
                                 <textarea class="form-control" name="comentario"></textarea>
                                 <button type="submit" class="btn btn-success">Enviar</button>
-                            </div>
+                          </div>
                         </form>
+                        {% else %}
+                        <p>Crie uma conta para comentar</p>
+                        {% endif %}
                     </div>
                 </div>
                 <!-- descricao -->
