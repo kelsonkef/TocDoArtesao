@@ -35,11 +35,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="receipe-slider owl-carousel">
+                    <div class="card-body">
                         {% if publicacoes.foto_publicacao == '' %}
-                        <img src="{% static 'img/bg-img/foto_publicacao.png' %}" alt="">
+                        <img class="img-fluid" src="{% static 'img/bg-img/foto_publicacao.png' %}" alt="">
                         {% else %}
-                            <img src="{{ publicacoes.foto_publicacao.url }}" alt="">
+                            <img class="img-fluid" src="{{ publicacoes.foto_publicacao.url }}" alt="">
                         {% endif %}
                     </div>
                 </div>
