@@ -93,11 +93,30 @@ def criar_publicacao(request):
     else:
         return render(request, 'usuarios/criar_publicacao.html')
 
-
 def deleta_publicacao(request, publicacao_id):
     publicacao = get_object_or_404(Publicacao, pk=publicacao_id)
     publicacao.delete()
     return redirect('dashboard')
+
+
+def edita_publicacao(request, publicacao_id):
+    publicacao = get_object_or_404(Publicacao, pk=publicacao_id)
+    publicacao_a_editar = {'publicacao':publicacao}
+    return render(request, 'usuarios/edita_publicacao.html' ,publicacao_a_editar)
+
+def atualiza_publicacao (request):
+    if request.method == 'POST':
+        publicacao_id = request.POST['publicacao_id']
+        p = Publicacao.objects.get(pk=publicacao_id)
+        p.nome_publicacao = request.POST['nome_publicacao']
+        p.descricao = request.POST['descricao']
+        p.preco = float(request.POST['preco'])
+        p.categoria = request.POST['categoria']
+        if 'foto_publicacao' in request.FILES:
+            r.foto_publicacao = request.FILES['foto_publicacao']
+        p.save()
+        return redirect('dashboard')
+
 
 
 def campo_vazio(campo):

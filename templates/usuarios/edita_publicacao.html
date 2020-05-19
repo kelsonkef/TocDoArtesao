@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="section-heading">
-                    <h3>Edite aqui sua receita, {{ user.username }} :)</h3>
+                    <h3>Edite aqui sua Publicação, {{ user.username }} :)</h3>
                 </div>
             </div>
         </div>
@@ -26,34 +26,35 @@
             <div class="col-12">
             <p>Todos os campos são obrigatórios</p>
                 <div class="contact-form-area">
-                    <form action="{% url 'atualiza_receita' %}" method="post" enctype="multipart/form-data">
+                    <form action="{% url 'atualiza_publicacao' %}" method="post" enctype="multipart/form-data">
                             {% csrf_token %}
-                            <input type="text" id="receita_id" class="form-control" name="receita_id" value="{{receita.id}}" hidden>
+                            <input type="text" id="publicacao_id" class="form-control" name="publicacao_id" value="{{publicacao.id}}" hidden>
                         <div class="row">
                             <div class="col-12 col-lg-12">
                                 <label for="nome_publicacao"><b>Título da Publicação</b></label>
-                                <input type="text" id="nome_publicacao" class="form-control" name="nome_publicacao" placeholder="Ex. Suco de limão" value="{{receita.nome_publicacao}}" required>
+                                <input type="text" id="nome_publicacao" class="form-control" name="nome_publicacao" placeholder="Ex. Suco de limão" value="{{publicacao.nome_publicacao}}" required>
                             </div>
                             <div class="col-12">
                                 <label for="file"><b>Descrição</b></label>
-                                <textarea class="form-control" name="descricao" cols="30" rows="10" placeholder="Ex. 2 Limões &#10;200ml de água" required>{{receita.descricao}}</textarea>
+                                <textarea class="form-control" name="descricao" cols="30" rows="10" placeholder="Ex. 2 Limões &#10;200ml de água" required>{{publicacao.descricao}}</textarea>
                             </div>
+                            <h1>{{publicacao.preco}}</h1>
                             <div class="col-12 col-lg-4">
                                 <label for="file"><b>Preço</b></label>
-                                <input type="number" class="form-control" name="preco" placeholder="Ex. 100 R$" value="{{receita.rendimento}}" required>
+                                <input type="number" class="form-control" name="preco" value="{{publicacao.preco}}" required>
                             </div>
                             <div class="col-12 col-lg-4">
                                 <label for="file"><b>Categoria</b></label>
-                                <input type="text" class="form-control" name="categoria" placeholder="Ex. Sucos e bebidas" value="{{receita.categoria}}"required>
+                                <input type="text" class="form-control" name="categoria" placeholder="Ex. Sucos e bebidas" value="{{publicacao.categoria}}"required>
                             </div>
-                            
+
                             <div class="col-12 col-lg-4">
                                 <label for="file"><b>Foto utilizada</b></label>
-                                <img src="{{ receita.foto_receita.url }}" alt="">
+                                <img src="{{ publicacao.foto_publicacao.url }}" alt="">
                             </div>
                             <div class="col-12 col-lg-4">
                                 <label for="file"><b>Adicionar nova foto</b></label>
-                                <input type="file" class="form-control" name="foto_receita">
+                                <input type="file" class="form-control" name="foto_publicacao">
                             </div>
                             <div class="col-12 text-center">
                                 <button class="btn btn-success" type="submit">Atualizar</button>

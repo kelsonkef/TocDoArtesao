@@ -40,7 +40,7 @@
                         <div class="receipe-content">
                             <a href="{% url 'publicacao' publicacao.id %}">
                                 <h5>{{ receita.nome_publicacao }}</h5>
-                                <a href="#" type="button" class="btn btn-info">Modificar</a>
+                                <a href="{% url 'edita_publicacao' publicacao.id %}" type="button" class="btn btn-info">Modificar</a>
                                 <a href="{% url 'deleta_publicacao' publicacao.id %}" type="button" class="btn btn-danger">Deletar</a>
                             </a>
                         </div>
