@@ -86,11 +86,17 @@
                             <p>Ola asdasdasdkasldkaslçk</p>
                         </p>
                         </div>
-                        <form action="#" method="post" enctype="multipart/form-data">
+                        <form action="{% url 'cadastra_comentario' %}" method="post" enctype="multipart/form-data">
+                          {% csrf_token %}
+                          <input type="text" id="publicacao_id" class="form-control" name="publicacao_id" value="{{publicacao.id}}" hidden>
+                          <div class="col-12 col-lg-12">
+                              <label for="nome_publicacao"><b>Título do comentario</b></label>
+                              <input type="text" id="titulo_comentario" class="form-control" name="titulo_comentario">
+                          </div>
                             <div class="col-12">
                                 <label for="file"><b>Seu comentario</b></label>
-                                <textarea class="form-control" name="opa"></textarea>
-                                <button ttype="submit" class="btn btn-success">Enviar</button>
+                                <textarea class="form-control" name="comentario"></textarea>
+                                <button type="submit" class="btn btn-success">Enviar</button>
                             </div>
                         </form>
                     </div>

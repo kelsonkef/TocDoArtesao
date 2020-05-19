@@ -1,7 +1,8 @@
-from django.shortcuts import render, get_list_or_404, get_object_or_404
+from django.shortcuts import render, redirect, get_list_or_404, get_object_or_404
 from django.http import HttpResponse
 from .models import Publicacao
-# Create your views here.
+from django.contrib import auth, messages
+from user.models import Usuario
 
 def index(request):
     #Filtarando e ordenando
@@ -14,10 +15,7 @@ def index(request):
     return render(request,"index.html",dados)
 
 def publicacao(request, publicacao_id):
-    print("Entrou")
     publicacoes = get_object_or_404(Publicacao, pk=publicacao_id) #Pega o Objeto ou dá erro 404
-    print(publicacao)
-
     publicacoes_a_exibir = {
         'publicacoes': publicacoes
     }
@@ -35,3 +33,6 @@ def buscar(request):
     }
 
     return render(request, 'buscar.html', dados)
+
+def campo_vazio(campo):
+    return not campo.strip()
