@@ -78,7 +78,6 @@ def dashboard(request):
     else:
         return redirect('index')
 
-
 def criar_publicacao(request):
     if request.method == 'POST':
         nome_publicacao = request.POST['nome_publicacao']
@@ -94,6 +93,11 @@ def criar_publicacao(request):
     else:
         return render(request, 'usuarios/criar_publicacao.html')
 
+
+def deleta_publicacao(request, publicacao_id):
+    publicacao = get_object_or_404(Publicacao, pk=publicacao_id)
+    publicacao.delete()
+    return redirect('dashboard')
 
 
 def campo_vazio(campo):
