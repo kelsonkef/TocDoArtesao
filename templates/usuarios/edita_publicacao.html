@@ -29,6 +29,14 @@
                     <form action="{% url 'atualiza_publicacao' %}" method="post" enctype="multipart/form-data">
                             {% csrf_token %}
                             <input type="text" id="publicacao_id" class="form-control" name="publicacao_id" value="{{publicacao.id}}" hidden>
+                            <div class="form-check">
+                              {% if publicacao.publicada == True %}
+                                <input type="checkbox" class="form-check-input" name="publicada" value="{{publicacao.publicada}}" checked>
+                              {% else %}
+                                <input type="checkbox" class="form-check-input" name="publicada" value="{{publicacao.publicada}}">
+                              {% endif %}
+                                <label class="form-check-label" for="exampleCheck1">Marque para publicar a publicação</label>
+                            </div>
                         <div class="row">
                             <div class="col-12 col-lg-12">
                                 <label for="nome_publicacao"><b>Título da Publicação</b></label>

@@ -117,10 +117,33 @@ def atualiza_publicacao (request):
         p.descricao = request.POST['descricao']
         p.preco = float(request.POST['preco'])
         p.categoria = request.POST['categoria']
+        if 'publicada' in request.POST:
+            print("Print dentro do if")
+            print(request.POST['publicada'])
+            if request.POST['publicada'] == 'False':
+                p.publicada = True
+        else:
+            #print("Print dentro do else")
+            #print(request.POST['publicada'])
+            p.publicada = False
         if 'foto_publicacao' in request.FILES:
             r.foto_publicacao = request.FILES['foto_publicacao']
         p.save()
         return redirect('dashboard')
+
+def info_usuario(request):
+    if request.method == 'POST':
+        usuario = get_object_or_404(Usuario,pk=request.user.id)
+        #usuario.telefone = request.POST['telefone']
+        usuario.sobre = request.POST['sobre']
+        usuario.site = request.POST['site']
+        usuario.foto_usuario = request.FILE['foto_usuario']
+        usuario.info = True
+        if 'foto_usuario' in request.FILES:
+            usuario.foto_usuario = request.FILE['foto_usuario']
+        usuario.save()
+        return redirect('dashboard')
+    return render(request, 'usuarios/info-usuario.html')
 
 
 def campo_vazio(campo):
