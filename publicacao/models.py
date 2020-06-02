@@ -14,7 +14,7 @@ class Publicacao(models.Model):
     foto_publicacao = models.ImageField(upload_to='fotos/%d/%m/%Y', blank = True)
 
     def __str__(self):
-        return "Nome do objeto é = %s" % self.foto_publicacao
+        return "%s" % self.foto_publicacao
 
 
 class Comentario(models.Model):
@@ -25,4 +25,4 @@ class Comentario(models.Model):
     descricao = models.TextField()
 
     def __str__(self):
-        return "Nome do objeto é = %s" % self.titulo
+        return "%s" % self.titulo

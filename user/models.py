@@ -16,4 +16,4 @@ class Usuario(models.Model):
     info = models.BooleanField(default=False)
 
     def __str__(self):
-        return "Nome do objeto é = %s" % self.nome
+        return "%s" % self.nome

@@ -1,108 +1,32 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<!-- Preloader -->
-<div id="preloader">
-    <i class="circle-preloader"></i>
-    <img src="{% static 'img/core-img/pizza.png' %}" alt="">
-</div>
-
-{% include 'partials/_busca.html' %}
 
 {% include 'partials/_menu.html' %}
 
-<!-- ##### Contact Form Area Start ##### -->
-<div class="contact-area section-padding-0-80">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="section-heading">
-                    <h2>Crie Sua Conta</h2>
-                </div>
-            </div>
-        </div>
-          {% include 'partials/_alertas.html' %}
-        <div class="row">
-            <div class="col-12">
-                <div class="contact-form-area">
-                    <form action="{% url 'cadastro' %}" method="POST">
-                        {% csrf_token %}
-                        <div class="row">
-                            <div class="col-12 col-lg-12">
-                                <label for="nome_publicacao"><b>Nome completo</b></label>
-                                <input type="text" class="form-control" name="nome" placeholder="Ex.:Guilherme Lima" required>
-                            </div>
-                            <div class="col-12 col-lg-12">
-                                <label for="email"><b>Email</b></label>
-                                <input type="email" class="form-control" name="email" placeholder="Ex.: guilherme@receitas.com" required>
-                            </div>
-                            <div class="col-12 col-lg-6">
-                                <label for="nascimento"><b>Data de Nascimento</b></label>
-                                <input type="date" class="form-control" name="nascimento" required>
-                            </div>
-
-                            <div class="col-12 col-lg-6">
-                                  <label for="estado"><b>Estado</b></label>
-                                  <input type="text" class="form-control" name="estado" required>
-                                  <!-- ##### Contact Form Area Start #####
-                                    <select class="form-control" id="estado" size='3'>
-                                    <option value="AC">Acre</option>
-                                    <option value="AL">Alagoas</option>
-                                    <option value="AP">Amapá</option>
-                                    <option value="AM">Amazonas</option>
-                                    <option value="BA">Bahia</option>
-                                    <option value="CE">Ceará</option>
-                                    <option value="DF">Distrito Federal</option>
-                                    <option value="ES">Espírito Santo</option>
-                                    <option value="GO">Goiás</option>
-                                    <option value="MA">Maranhão</option>
-                                    <option value="MT">Mato Grosso</option>
-                                    <option value="MS">Mato Grosso do Sul</option>
-                                    <option value="MG">Minas Gerais</option>
-                                    <option value="PA">Pará</option>
-                                    <option value="PB">Paraíba</option>
-                                    <option value="PR">Paraná</option>
-                                    <option value="PE">Pernambuco</option>
-                                    <option value="PI">Piauí</option>
-                                    <option value="RJ">Rio de Janeiro</option>
-                                    <option value="RN">Rio Grande do Norte</option>
-                                    <option value="RS">Rio Grande do Sul</option>
-                                    <option value="RO">Rondônia</option>
-                                    <option value="RR">Roraima</option>
-                                    <option value="SC">Santa Catarina</option>
-                                    <option value="SP">São Paulo</option>
-                                    <option value="SE">Sergipe</option>
-                                    <option value="TO">Tocantins</option>
-                                    </select>
-                                        -->
-                            </div>
-
-                            <div class="col-12 col-lg-6">
-                                <label for="cidade"><b>Cidade</b></label>
-                                <input type="text" class="form-control" name="cidade" placeholder="Ex. :Rio de Janeiro" required>
-                            </div>
-                            <div class="col-12 col-lg-6">
-                                <label for="telefone"><b>Telefone</b></label>
-                                <input type="tel" class="form-control" name="telefone" placeholder="Ex. :83 999999999" required>
-                            </div>
-                            <div class="col-12 col-lg-6">
-                                <label for="password"><b>Senha</b></label>
-                                <input type="password" class="form-control" name="password" placeholder="Digite sua senha" required>
-                            </div>
-                            <div class="col-12 col-lg-6">
-                                <label for="password2"><b>Confirmação de senha</b></label>
-                                <input type="password" class="form-control" name="password2" placeholder="Digite sua senha mais uma vez" required>
-                            </div>
-                            <div class="col-12 text-center">
-                                <button class="btn btn-success" type="submit">Criar sua conta</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+<div class="register-photo">
+        <div class="form-container">
+            <form method="post" action="{% url 'cadastro' %}">
+                {% csrf_token %}
+                <h2 class="text-center"><strong>Crie uma conta</strong></h2>
+                <label for="nome_usuario"><b>Nome completo:</b></label>
+                <div class="form-group"><input class="form-control" type="text" name="nome" placeholder="Ex: Lucas Carneiro" required></div>
+                 <label for="email"><b>Email:</b></label>
+                <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Ex: lucascarneiroandrade@gmail.com" required></div>
+                <label for="nascimento"><b>Data de Nascimento:</b></label>
+                <div class="form-group"><input class="form-control" type="date" name="nascimento" required></div>
+                <label for="estado"><b>Estado:</b></label>
+                <div class="form-group"><input class="form-control" type="text" name="estado" placeholder="Ex: Paraíba" required></div>
+                <label for="cidade"><b>Cidade:</b></label>
+                <div class="form-group"><input class="form-control" type="text" name="cidade" placeholder="Ex: João Pessoa" required></div>
+                <label for="telefone"><b>Telefone:</b></label>
+                <div class="form-group"><input class="form-control" type="tel" name="telefone" placeholder="Ex: (83) 99999-9999" required></div>
+                <label for="password"><b>Senha:</b></label>
+                <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Senha"></div>
+                <label for="password2"><b>Confirmação de senha:</b></label>
+                <div class="form-group"><input class="form-control" type="password" name="password2" placeholder="Repetir Senha"></div>
+                <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Cadastrar</button></div>
+                <a href="{% url 'login' %}" class="already">Já possui cadastro? Faça login aqui!</a></form>
         </div>
     </div>
-</div>
-
-{% include 'partials/_footer.html' %}
 {% endblock %}
