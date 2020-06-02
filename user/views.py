@@ -123,8 +123,6 @@ def atualiza_publicacao (request):
             if request.POST['publicada'] == 'False':
                 p.publicada = True
         else:
-            #print("Print dentro do else")
-            #print(request.POST['publicada'])
             p.publicada = False
         if 'foto_publicacao' in request.FILES:
             r.foto_publicacao = request.FILES['foto_publicacao']
